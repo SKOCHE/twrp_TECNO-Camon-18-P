@@ -1,4 +1,4 @@
-# Android device tree for TECNO TECNO CH7n (TECNO-CH7n)
+# Android device tree for TECNO CH7n
 
 ```
 #
