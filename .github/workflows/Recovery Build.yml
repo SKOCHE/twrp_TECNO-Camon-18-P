@@ -36,7 +36,7 @@ on:
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME'
         required: true
-        default: 'twrp_Tecno_Camon-18-P'
+        default: 'twrp_Tecno-Camon-18-P'
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
