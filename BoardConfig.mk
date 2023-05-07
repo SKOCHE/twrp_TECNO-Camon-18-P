@@ -16,7 +16,7 @@
 #
 
 # Device path
-DEVICE_PATH := device/Tecno/Camon 18 P
+DEVICE_PATH := device/Tecno/Camon-18-P
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -40,7 +40,7 @@ TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_IS_64_BIT := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := Camon 18 P
+TARGET_BOOTLOADER_BOARD_NAME := Camon-18-P
 TARGET_NO_BOOTLOADER := true
 
 # Platform
@@ -48,7 +48,7 @@ TARGET_BOARD_PLATFORM := mt6781
 PRODUCT_PLATFORM := mt6781
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := TECNO-Camon 18 P
+TARGET_OTA_ASSERT_DEVICE := Camon-18-P
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
