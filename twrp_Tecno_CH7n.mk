@@ -13,16 +13,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Inherit from TECNO-CH7n device
-$(call inherit-product, device/tecno/TECNO-CH7n/device.mk)
+$(call inherit-product, device/Tecno/CH7n/device.mk)
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := CH7n
-PRODUCT_NAME := twrp_TECNO-CH7n
+PRODUCT_NAME := twrp_Tecno_CH7n
 PRODUCT_BRAND := TECNO
 PRODUCT_MODEL := Comon 18P
-PRODUCT_MANUFACTURER := tecno
+PRODUCT_MANUFACTURER := Tecno
 PRODUCT_RELEASE_NAME := Tecno Comon 18P
 
