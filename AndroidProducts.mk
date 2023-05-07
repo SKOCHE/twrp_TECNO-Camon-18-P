@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_TECNO Camon 18 P.mk
+    $(LOCAL_DIR)/twrp_Camon-18-P.mk
 
 
 
