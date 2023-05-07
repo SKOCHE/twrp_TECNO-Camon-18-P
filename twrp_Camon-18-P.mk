@@ -20,9 +20,9 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := Camon-18-P
-PRODUCT_NAME := twrp_Camon-18-P
+PRODUCT_NAME := twrp_TECNO-Camon-18-P
 PRODUCT_BRAND := TECNO
 PRODUCT_MODEL := Camon-18-P
 PRODUCT_MANUFACTURER := Tecno
-PRODUCT_RELEASE_NAME := Tecno Comon 18 P
+PRODUCT_RELEASE_NAME := TECNO-Camon-18-P
 
