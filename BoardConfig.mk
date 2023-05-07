@@ -16,7 +16,7 @@
 #
 
 # Device path
-DEVICE_PATH := device/Tecno/Camon-18-P
+DEVICE_PATH := device/Tecno/Camon18P
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -40,15 +40,14 @@ TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_IS_64_BIT := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := Camon-18-P
+TARGET_BOOTLOADER_BOARD_NAME := Camon18P
 TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6781
-PRODUCT_PLATFORM := mt6781
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Camon-18-P
+TARGET_OTA_ASSERT_DEVICE := Camon18P
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
@@ -142,7 +141,7 @@ PLATFORM_VERSION := 16.1.0
 ## TWRP-Specific configuration
 
 TW_THEME := portrait_hdpi
-TW_DEVICE_VERSION := Tecno Comon 18P by SK
+TW_DEVICE_VERSION := Tecno Camon18P by SK
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_HAS_MTP := true
