@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/Tecno/Camon 18 P
+LOCAL_PATH := device/Tecno/Camon-18-P
 PRODUCT_PLATFORM := mt6781
 
 # V A/B
