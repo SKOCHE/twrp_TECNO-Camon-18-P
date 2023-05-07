@@ -1,4 +1,4 @@
-# Android device tree for Tecno_CH7n
+# Android device tree for Tecno Camon 18 P
 
 ```
 #
