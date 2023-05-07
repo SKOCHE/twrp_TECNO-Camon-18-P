@@ -13,7 +13,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Inherit from TECNO Camon-18-P device
-$(call inherit-product, device/Tecno/Camon 18 P/device.mk)
+$(call inherit-product, device/Tecno/Camon-18-P/device.mk)
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
