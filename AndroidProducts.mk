@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_TECNO-CH7n.mk
+    $(LOCAL_DIR)/twrp_Tecno_CH7n.mk
 
 
 
