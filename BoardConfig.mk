@@ -1,12 +1,12 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2023 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,12 +42,61 @@ TARGET_IS_64_BIT := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := Camon18P
 TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6781
 
+#BOARD_HAS_MTK_HARDWARE := true
+BOARD_USES_MTK_HARDWARE := true
+#MTK_HARDWARE := true
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := Camon18P
+
+# A/B
+AB_OTA_UPDATER := true
+TW_INCLUDE_REPACKTOOLS := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    lk \
+    preloader \
+    odm \
+    product \
+    system \
+    vbmeta \
+    vbmeta_vendor \
+    vbmeta_system \
+    vendor \
+    vendor_boot
+
+# File systems and partitions
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x2000000
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x5CFBB000
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x39CD7F8000
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_PARTITION_SIZE := 0x2ABB4000
+
+# Workaround for error copying vendor files to recovery ramdisk
+TARGET_COPY_OUT_VENDOR := vendor
+
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Dynamic Partition
+BOARD_SUPER_PARTITION_SIZE := 6442450944
+BOARD_SUPER_PARTITION_GROUPS := main
+BOARD_MAIN_SIZE := 6438256640 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
+BOARD_MAIN_PARTITION_LIST := product vendor system odm
+
+# System as root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
@@ -79,122 +128,28 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # AVB
 BOARD_AVB_ENABLE := true
-BOARD_AVB_VBMETA_SYSTEM := system product
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
-BOARD_AVB_VBMETA_VENDOR := vendor
-BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 2
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 3
+BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
-# System as root
-BOARD_SUPPRESS_SECURE_ERASE := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+# Hack to get keymaster to recognize the key files
+PLATFORM_SECURITY_PATCH := 2022-12-05
+PLATFORM_VERSION := 12.0.0
 
-# Partitions configs
-BOARD_USES_RECOVERY_AS_BOOT := true
-TARGET_NO_RECOVERY := true
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+TARGET_DISABLE_TRIPLE_BUFFERING := false
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
+# Metadata
 BOARD_USES_METADATA_PARTITION := true
-
-# Partitions
-BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x02000000 # 32 MB
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x08000000 # 128 MB
-
-# Dynamic Partitions
-BOARD_SUPER_PARTITION_SIZE := 9126805504
-BOARD_SUPER_PARTITION_GROUPS := google_dynamic_partitions
-BOARD_GOOGLE_DYNAMIC_PARTITIONS_SIZE := 9126805504
-
-BOARD_MAIN_PARTITION_LIST := system vendor product system_ext
-
-# File systems
-BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
-BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_USERIMAGES_USE_F2FS := true
-
-# AB
-AB_OTA_UPDATER := true
-
-# Workaround for copying error vendor files to recovery ramdisk
-TARGET_COPY_OUT_PRODUCT := product
-TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_SYSTEM_EXT = system_ext
-
-# Recovery
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice
-
-# Hack: prevent anti rollback
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 16.1.0
-
-## TWRP-Specific configuration
-
-TW_THEME := portrait_hdpi
-TW_DEVICE_VERSION := Tecno Camon18P by SK
-TW_EXTRA_LANGUAGES := true
-TW_INCLUDE_NTFS_3G := true
-TW_HAS_MTP := true
-TW_EXCLUDE_TWRPAPP := true
-TW_INCLUDE_REPACKTOOLS := true
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
-TARGET_USES_MKE2FS := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TW_DEFAULT_LANGUAGE := ru
-TW_EXTRA_LANGUAGES := false
-
-# Device config
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 1200
-#TW_SCREEN_BLANK_ON_BOOT := true
-
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
-TW_HAS_NO_RECOVERY_PARTITION := true
-
-BOARD_USES_MTK_HARDWARE := true
-
-# Fix stock .ozip installation
-TW_SKIP_COMPATIBILITY_CHECK := true
-TW_OZIP_DECRYPT_KEY := 0000
-
-# Hide notch
-#    TW_Y_OFFSET  := 100 
-#    TW_H_OFFSET  := -100
-
-TARGET_SCREEN_HEIGHT := 2460
-TARGET_SCREEN_WIDTH := 1080
-
-# Statusbar icons flags
-TW_STATUS_ICONS_ALIGN := center
-TW_CUSTOM_CPU_POS := 50
-TW_CUSTOM_CLOCK_POS := 300
-TW_CUSTOM_BATTERY_POS := 800
+BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 # Crypto
-TW_INCLUDE_CRYPTO := false
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
 #TW_INCLUDE_CRYPTO := true
 #TW_INCLUDE_CRYPTO_FBE := true
@@ -223,5 +178,69 @@ TW_INCLUDE_CRYPTO := false
 #    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
 #    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
+# Properties
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6781.rc
 
+# Partitions (listed in the file) to be wiped under recovery.
+TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery.wipe
 
+# Recovery
+#TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.fstab
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_USES_RECOVERY_AS_BOOT := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_NO_RECOVERY := true
+TW_HAS_NO_RECOVERY_PARTITION := true
+
+# TWRP specific build flags
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_INCLUDE_NTFS_3G := true
+TW_USE_TOOLBOX := true
+TARGET_USES_MKE2FS := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_NO_BATT_PERCENT := false
+
+# TWRP Configuration
+TW_DEFAULT_LANGUAGE := ru
+TW_EXTRA_LANGUAGES := false
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
+TW_NO_SCREEN_BLANK := true
+TW_SCREEN_BLANK_ON_BOOT := true
+
+# Display
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 150
+
+# Resolution
+TW_THEME := portrait_hdpi
+DEVICE_SCREEN_WIDTH := 1080
+DEVICE_SCREEN_HEIGHT := 2400
+
+# Storage
+TW_NO_USB_STORAGE := false
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_HAS_MTP := true
+TW_MTP_DEVICE := /dev/mtp_usb
+TW_DEFAULT_EXTERNAL_STORAGE := true
+
+# Debug
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
+# Excludes
+TW_EXCLUDE_TWRPAPP := true
+TW_EXCLUDE_APEX := true
+TW_INCLUDE_PYTHON := false
+TW_EXCLUDE_ENCRYPTED_BACKUPS := false
+TW_BACKUP_EXCLUSIONS := /data/fonts/files
+TW_DEVICE_VERSION := Tecno Camon18P by SK
