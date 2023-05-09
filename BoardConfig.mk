@@ -190,7 +190,7 @@ TW_INCLUDE_CRYPTO := false
 
 # Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6785.rc
+TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6781.rc
 
 # Partitions (listed in the file) to be wiped under recovery.
 TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery.wipe
