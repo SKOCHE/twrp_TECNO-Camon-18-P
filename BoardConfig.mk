@@ -174,7 +174,8 @@ TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6781.rc
 
 # Partitions (listed in the file) to be wiped under recovery.
-TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery.wipe
+TARGET_RECOVERY_WIPE := $          ( DEVICE
+
 
 # Recovery
 #TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
