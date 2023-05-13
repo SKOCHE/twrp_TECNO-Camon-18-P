@@ -166,15 +166,23 @@ BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_NO_RECOVERY := true
 TW_HAS_NO_RECOVERY_PARTITION := true
+TW_OEM_BUILD := true
 
 # TWRP specific build flags
+TW_DEVICE_VERSION := alpha
+TW_THEME := portrait_hdpi
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_REPACKTOOLS := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_INCLUDE_NTFS_3G := true
-TW_USE_TOOLBOX := true
-TARGET_USES_MKE2FS := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_NO_BATT_PERCENT := false
+TW_INCLUDE_NTFS_3G := true
+TW_MAX_BRIGHTNESS := 2047
+TW_DEFAULT_BRIGHTNESS := 1200
+TARGET_USES_MKE2FS := true
+TW_NO_SCREEN_BLANK := true
+TW_EXCLUDE_APEX := true
+TW_NO_HAPTICS := true
 
 # TWRP Configuration
 TW_DEFAULT_LANGUAGE := ru
@@ -182,16 +190,6 @@ TW_EXTRA_LANGUAGES := false
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
-
-# Display
-TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 150
-
-# Resolution
-TW_THEME := portrait_hdpi
-DEVICE_SCREEN_WIDTH := 1080
-DEVICE_SCREEN_HEIGHT := 2400
 
 # Storage
 TW_NO_USB_STORAGE := false
