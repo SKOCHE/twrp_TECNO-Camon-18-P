@@ -17,52 +17,82 @@
 
 LOCAL_PATH := device/Tecno/Camon18P
 
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+# A/B
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    lk \
+    preloader \
+    product \
+    system \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    vendor \
+    
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
 
-# Dynamic Partitions stuff
+# V A/B
+ENABLE_VIRTUAL_AB := true
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Dynam
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 31
 
-PRODUCT_PLATFORM := mt6785
-# A/B
-ENABLE_VIRTUAL_AB := true
+# HACK: Set vendor patch level
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.vendor.build.security_patch=2099-12-31 \
+#    ro.bootimage.build.date.utc=0 \
+#    ro.build.date.utc=0
 
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
+# Bypass anti-rollback ROMs protection
+# Set build date to Jan 1 2009 00:00:00
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.date.utc=1230768000
+
+# Health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+    libhealthd.$(PRODUCT_PLATFORM)
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl-recovery \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.1-mtkimpl.recovery \
+    android.hardware.boot@1.1-mtkimpl \
+    android.hardware.boot@1.1-service
+    
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
+
+# Fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
+
+# MTK PlPath Utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils.recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+
 PRODUCT_PACKAGES += \
     otapreopt_script \
+    cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
-    
-# Fastbootd stuff
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.1-impl-mock \
-    android.hardware.fastboot@1.1-impl-mock.recovery \
-    fastbootd
 
-# health Hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-
-#TW_OVERRIDE_SYSTEM_PROPS := \
-#    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
     
 
