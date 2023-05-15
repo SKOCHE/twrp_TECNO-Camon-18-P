@@ -29,7 +29,12 @@
 /proinfo         emmc      /dev/block/by-name/proinfo     flags=backup
 
 # External-Devices (SDCARD | OTG)
-/external_sd        vfat      /dev/block/mmcblk0p1         /dev/block/mmcblk0               flags=storage;wipeingui;removable
-/usb-otg            vfat      /dev/block/sdd1                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8";
+/external_sd            auto    /dev/block/mmcblk0p1    /dev/block/mmcblk0              flags=display="Micro_SDcard";storage;wipeingui;removable;backup=0
+/usbotg        auto     /dev/block/sdd1  /dev/block/sdd                     flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
+
+
+
+
+
 
 
