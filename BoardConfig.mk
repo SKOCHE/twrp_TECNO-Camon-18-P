@@ -42,7 +42,6 @@ TARGET_IS_64_BIT := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := Camon18P
 TARGET_NO_BOOTLOADER := true
-TARGET_USES_UEFI := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6781
@@ -86,10 +85,6 @@ BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
 BOARD_SUPER_PARTITION_GROUPS := tecno_dynamic_partitions
 BOARD_TECNO_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
 BOARD_TECNO_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
-
-# System as root
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
@@ -156,16 +151,13 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6781.rc
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.fstab
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_NO_RECOVERY := true
-TW_HAS_NO_RECOVERY_PARTITION := true
 TW_OEM_BUILD := true
 
 # TWRP specific build flags
@@ -186,9 +178,6 @@ TW_NO_HAPTICS := true
 # TWRP Configuration
 TW_DEFAULT_LANGUAGE := ru
 TW_EXTRA_LANGUAGES := false
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
-TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
-TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
 
 # Storage
 TW_NO_USB_STORAGE := false
