@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/ulefone/Power_Armor_13
+LOCAL_PATH := device/Tecno/Camon18P
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -27,8 +27,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_TARGET_VNDK_VERSION := 31
 
 PRODUCT_PLATFORM := mt6785
-#PRODUCT_BOARD := k85v1_64
-
 # A/B
 ENABLE_VIRTUAL_AB := true
 
