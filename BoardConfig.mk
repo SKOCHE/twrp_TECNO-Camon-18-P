@@ -148,7 +148,6 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Additional binaries & libraries needed for recovery
      TARGET_RECOVERY_DEVICE_MODULES += \
      libkeymaster4 \
@@ -198,6 +197,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
+TW_THEME := portrait_hdpi
 
 # Storage
 TW_NO_USB_STORAGE := false
