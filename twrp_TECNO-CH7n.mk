@@ -14,7 +14,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 PRODUCT_DEVICE := TECNO-CH7n
-PRODUCT_NAME := twrp_TECNO-CH7n
+PRODUCT_NAME := twrp_TECNO_CH7n
 PRODUCT_BRAND := TECNO
 PRODUCT_MODEL := TECNO CH7n
 PRODUCT_MANUFACTURER := tecno
