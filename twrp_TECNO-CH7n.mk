@@ -13,9 +13,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from TECNO-CH7n device
-$(call inherit-product, device/tecno/TECNO-CH7n/device.mk)
-
 PRODUCT_DEVICE := TECNO-CH7n
 PRODUCT_NAME := twrp_TECNO-CH7n
 PRODUCT_BRAND := TECNO
