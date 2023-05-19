@@ -121,9 +121,6 @@ BOARD_ROOT_EXTRA_FOLDERS += metadata
 # Crypto
 TW_INCLUDE_CRYPTO := true
 
-# Properties
-TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
