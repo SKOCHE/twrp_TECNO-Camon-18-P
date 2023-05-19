@@ -9,7 +9,6 @@ ro.boot.hardware=mt6771
 androidboot.hardware=mt6771
 ro.hardware.egl=mali
 ro.sf.lcd_density=480
-ro.treble.enabled=true
 # Recovery specific properties
 ro.secure=0
 ro.adb.secure=0
