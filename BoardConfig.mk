@@ -118,9 +118,6 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
-# Crypto
-TW_INCLUDE_CRYPTO := true
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true

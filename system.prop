@@ -1,7 +1,4 @@
 # Default properties
-ro.tee_support=1
-ro.mtk_trustkernel_tee_support=1
-ro.crypto.volume.filenames_mode=aes-256-cts
 ro.boot.dynamic_partitions=true
 ro.vendor.mediatek.platform=MT6771
 ro.hardware=mt6771
