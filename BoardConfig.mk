@@ -118,6 +118,11 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
+
+
+# Properties
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -147,6 +152,7 @@ TW_DEFAULT_LANGUAGE := ru
 TW_EXTRA_LANGUAGES := false
 
 # Storage
+TW_NO_USB_STORAGE := false
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
