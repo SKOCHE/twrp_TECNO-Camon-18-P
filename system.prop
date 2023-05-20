@@ -1,9 +1,9 @@
 # Default properties
 ro.boot.dynamic_partitions=true
-ro.vendor.mediatek.platform=MT6771
-ro.hardware=mt6771
-ro.boot.hardware=mt6771
-androidboot.hardware=mt6771
+ro.vendor.mediatek.platform=MT6781
+ro.hardware=mt6781
+ro.boot.hardware=mt6781
+androidboot.hardware=mt6781
 ro.hardware.egl=mali
 ro.sf.lcd_density=480
 # Recovery specific properties
