@@ -17,6 +17,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),TECNO_CH7n)
+ifeq ($(TARGET_DEVICE),Camon18P)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
