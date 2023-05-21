@@ -150,9 +150,7 @@ TW_INCLUDE_REPACKTOOLS := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEFAULT_LANGUAGE := ru
-TW_EXTRA_LANGUAGES := false
 
 # Device config
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
@@ -168,21 +166,7 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 BOARD_USES_MTK_HARDWARE := true
 
 # Fix stock .ozip installation
-TW_SKIP_COMPATIBILITY_CHECK := true
 TW_OZIP_DECRYPT_KEY := 0000
-
-# Hide notch
-#    TW_Y_OFFSET  := 100 
-#    TW_H_OFFSET  := -100
-
-TARGET_SCREEN_HEIGHT := 2460
-TARGET_SCREEN_WIDTH := 1080
-
-# Statusbar icons flags
-TW_STATUS_ICONS_ALIGN := center
-TW_CUSTOM_CPU_POS := 50
-TW_CUSTOM_CLOCK_POS := 300
-TW_CUSTOM_BATTERY_POS := 800
 
 # Decryption
 TW_INCLUDE_CRYPTO := true
