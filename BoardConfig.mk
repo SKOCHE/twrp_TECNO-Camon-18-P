@@ -16,7 +16,7 @@
 #
 
 # Device path
-DEVICE_PATH := device/tecno/Camon18P
+DEVICE_PATH := device/Tecno/Camon18P
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
