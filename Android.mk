@@ -15,10 +15,8 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/twrp_TECNO_CH7n.mk
+LOCAL_PATH := $(call my-dir)
 
-COMMON_LUNCH_CHOICES := \
-    twrp_TECNO_CH7n-userdebug \
-    twrp_TECNO_CH7n-user \
-    twrp_TECNO_CH7n-eng
+ifeq ($(TARGET_DEVICE),TECNO_CH7n)
+include $(call all-subdir-makefiles,$(LOCAL_PATH))
+endif
