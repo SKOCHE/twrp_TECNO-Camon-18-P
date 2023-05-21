@@ -29,7 +29,6 @@ AB_OTA_PARTITIONS += \
     vbmeta_system \
     vbmeta_vendor \
     vendor \
-    vendor_boot
     
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -48,7 +47,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_TARGET_VNDK_VERSION := 31
 
 # API
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # HACK: Set vendor patch level
 #PRODUCT_PROPERTY_OVERRIDES += \
