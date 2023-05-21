@@ -22,8 +22,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Inherit from Camon18P device
-$(call inherit-product, device/Camon18P/device.mk)
+# Inherit from TECNO Camon18P device
+$(call inherit-product, device/Tecno/Camon18P/device.mk)
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
@@ -31,8 +31,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := Camon18P
 PRODUCT_NAME := twrp_Camon18P
-PRODUCT_BRAND := TECNO
+PRODUCT_BRAND := Tecno
 PRODUCT_MODEL := Camon18P
-PRODUCT_MANUFACTURER := tecno
-PRODUCT_RELEASE_NAME := Tecno Camon 18 P
+PRODUCT_MANUFACTURER := Tecno
 
