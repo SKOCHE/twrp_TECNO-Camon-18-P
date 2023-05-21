@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/tecno/Camon18P
+LOCAL_PATH := device/Tecno/Camon18P
 
 # A/B
 AB_OTA_PARTITIONS += \
