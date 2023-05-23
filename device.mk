@@ -70,7 +70,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-mtkimpl.recovery \
     android.hardware.boot@1.0-mtkimpl \
-    android.hardware.boot@1.10-service
+    android.hardware.boot@1.1-service
     
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
