@@ -44,10 +44,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
-PRODUCT_TARGET_VNDK_VERSION := 30
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 # API
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # HACK: Set vendor patch level
 #PRODUCT_PROPERTY_OVERRIDES += \
@@ -68,9 +68,9 @@ PRODUCT_PACKAGES += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-mtkimpl.recovery \
-    android.hardware.boot@1.1-mtkimpl \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.0-mtkimpl.recovery \
+    android.hardware.boot@1.0-mtkimpl \
+    android.hardware.boot@1.10-service
     
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
