@@ -1,12 +1,12 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2023 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,14 +21,15 @@ LOCAL_PATH := device/Tecno/Camon18P
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    lk \
-    preloader \
-    product \
     system \
+    system_ext \
+    product \
+    vendor \
+    odm \
     vbmeta \
     vbmeta_system \
-    vbmeta_vendor \
-    vendor \
+    vbmeta_vendor
+
     
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -45,9 +46,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
-
-# API
-PRODUCT_SHIPPING_API_LEVEL := 30
 
 # HACK: Set vendor patch level
 #PRODUCT_PROPERTY_OVERRIDES += \
@@ -86,7 +84,6 @@ PRODUCT_PACKAGES_DEBUG += \
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
-    cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
