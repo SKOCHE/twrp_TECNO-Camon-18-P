@@ -152,9 +152,7 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_DEFAULT_LANGUAGE := ru
-TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_APEX := true
-TW_NO_HAPTICS := true
+
 # Device config
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
