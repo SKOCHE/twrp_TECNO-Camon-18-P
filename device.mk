@@ -44,8 +44,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 # Dynam
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 31
+# Shipping API level
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.date.utc=1230768000 \
