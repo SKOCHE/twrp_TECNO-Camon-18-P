@@ -45,7 +45,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Health Hal
 PRODUCT_PACKAGES += \
