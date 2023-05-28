@@ -47,10 +47,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.date.utc=1230768000 \
-    ro.bootimage.build.date.utc=0
-
 # Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
