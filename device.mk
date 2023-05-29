@@ -64,7 +64,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
     
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+PRODUCT_PACKAGES_DEBUG += \
     bootctrl.mt6781 \
     libgptutils \
     libz \
