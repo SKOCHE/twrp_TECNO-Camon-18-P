@@ -47,17 +47,11 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Health Hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM)
-
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-mtkimpl.recovery \
-    android.hardware.boot@1.1-mtkimpl \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.0-mtkimpl.recovery \
+    android.hardware.boot@1.0-mtkimpl \
+    android.hardware.boot@1.0-service
     
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
@@ -65,13 +59,16 @@ PRODUCT_PACKAGES_DEBUG += \
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
-# MTK PlPath Utils
-PRODUCT_PACKAGES += \
-    mtk_plpath_utils.recovery    
+    fastbootd  
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
+    
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.mt6781 \
+    libgptutils \
+    libz \
+    libcutils    
     
 PRODUCT_PACKAGES += \
     otapreopt_script \
