@@ -47,6 +47,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+# Health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+    libhealthd.$(PRODUCT_PLATFORM)
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-mtkimpl.recovery \
