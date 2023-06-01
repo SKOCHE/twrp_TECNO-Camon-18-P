@@ -2,7 +2,6 @@
     Input:
         manifest_apuware_utils.xml
         manifest_chipone.xml
-        vendor.fptool.fingerprint-service.xml
         vendor.transsion.hardware.hyperion.hap_device.xml
         manifest_tranlog.xml
         manifest_tranlogconfig.xml
@@ -13,6 +12,7 @@
         manifest_em.xml
         manifest_bgservice.xml
         manifest_videotelephony.xml
+        manifest_nfc.xml
         manifest_secure_element_dsds.xml
         manifest_km41.xml
         manifest_tee.xml
@@ -170,6 +170,16 @@
         <fqname>@1.0::IMemtrack/default</fqname>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.nfc</name>
+        <transport>hwbinder</transport>
+        <version>1.2</version>
+        <interface>
+            <name>INfc</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.2::INfc/default</fqname>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.radio</name>
         <transport>hwbinder</transport>
         <version>1.2</version>
@@ -301,16 +311,6 @@
             <instance>default</instance>
         </interface>
         <fqname>@2.0::IFpsensorHidlSvc/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.fptool.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IFptoolFingerprint</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::IFptoolFingerprint/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.mediatek.hardware.aee</name>
