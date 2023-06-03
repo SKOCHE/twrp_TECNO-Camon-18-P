@@ -166,18 +166,12 @@ TW_INCLUDE_REPACKTOOLS := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEFAULT_LANGUAGE := ru
-
-## TWRP - Excludes something to reduce img file
-TW_EXCLUDE_TWRPAPP := true
-TW_EXCLUDE_APEX := true
 
 # Device config
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 1200
-TW_NO_SCREEN_BLANK := true					  
+TW_DEFAULT_BRIGHTNESS := 1200					  
 TW_Y_OFFSET := 50
 TW_H_OFFSET := -50							   
 
@@ -185,7 +179,6 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 
 # Fix stock .ozip installation
-TW_SKIP_COMPATIBILITY_CHECK := true
 TW_OZIP_DECRYPT_KEY := 0000
 
 # Decryption
