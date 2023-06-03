@@ -129,6 +129,14 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # AB
 AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    system \
+    vendor \
+    product \
+    system_ext \
+    boot \
+    vbmeta_vendor \
+    vbmeta_system
 
 # Workaround for copying error vendor files to recovery ramdisk
 TARGET_COPY_OUT_PRODUCT := product
