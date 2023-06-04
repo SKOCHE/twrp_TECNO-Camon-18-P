@@ -23,24 +23,12 @@ $(call inherit-product, device/Tecno/Camon18P/device.mk)
 # Inherit from TWRP-common stuffs, if building TWRP.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from PBRP-common stuff, if building PBRP.
-$(call inherit-product-if-exists, vendor/pb/config/common.mk)
-
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
-# Virtual A/B OTA
-# https://source.android.com/docs/core/ota/virtual_ab/implement#build-flags
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# Enable updating of APEXes
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Device Identifier
 PRODUCT_DEVICE := Camon18P
@@ -48,8 +36,6 @@ PRODUCT_NAME := twrp_Camon18P
 PRODUCT_BRAND := Tecno
 PRODUCT_MODEL := Camon18P
 PRODUCT_MANUFACTURER := Tecno
-
-PRODUCT_GMS_CLIENTID_BASE := android-$(PRODUCT_RRAND)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="sys_tssi_64_tecno-user 12 SP1A.210812.016 198666 release-keys"
