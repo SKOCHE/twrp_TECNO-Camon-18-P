@@ -1,11 +1,37 @@
-#
 # Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2023 TeamWin Recovery Project
 # Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
 #
-# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 LOCAL_PATH := device/Tecno/Camon18P
+
+# Dynamic Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Api level
+PRODUCT_SHIPPING_API_LEVEL := 31
+
+# Platform
+PRODUCT_PLATFORM := mt6781
+
+# A/B
+ENABLE_VIRTUAL_AB := true
+
+# fastboot/d hal
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -14,18 +40,21 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Virtual A/B
-ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-service \
+    android.hidl.base@1.0 \
     android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-mtkimpl.recovery
+    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2-mtkimpl.recovery 
 
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
+PRODUCT_PACKAGES += \
+    bootctrl.mt6781
+
+PRODUCT_PACKAGES += \
+    bootctrl.mt6781 \
+    libgptutils \
+    libz \
+    libcutils
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -34,35 +63,7 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 31
-
-# API
-PRODUCT_SHIPPING_API_LEVEL := 31
-
-# Dynamic Partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \													  
-    fastbootd
-
-# MTK PlPath Utils
-PRODUCT_PACKAGES += \
-    mtk_plpath_utils.recovery
-	
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
-# Health HAL
+# Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM)
-
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
-
-
+    android.hardware.health@2.1-service
