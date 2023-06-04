@@ -155,7 +155,7 @@ TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true											  
 TW_DEFAULT_LANGUAGE := ru
-
+TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_APEX := true
 # StatusBar
 TW_STATUS_ICONS_ALIGN := center
@@ -168,7 +168,10 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
 TW_EXCLUDE_DEFAULT_USB_INIT := true
+RECOVERY_SDCARD_ON_DATA := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
-TW_DEVICE_VERSION := Camon18P by SK
+TW_HAS_NO_RECOVERY_PARTITION := true
+
+BOARD_USES_MTK_HARDWARE := trueTW_DEVICE_VERSION := Camon18P by SK
 # Decryption
 TW_INCLUDE_CRYPTO := false
