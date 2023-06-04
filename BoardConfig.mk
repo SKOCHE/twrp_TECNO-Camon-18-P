@@ -125,14 +125,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # AB
 AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS += \
-    system \
-    vendor \
-    product \
-    system_ext \
-    boot \
-    vbmeta_vendor \
-    vbmeta_system
+
 
 # Workaround for copying error vendor files to recovery ramdisk
 TARGET_COPY_OUT_PRODUCT := product
@@ -153,8 +146,6 @@ PLATFORM_VERSION := 16.1.0
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
-TW_INCLUDE_RESETPROP := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXTRA_LANGUAGES := false
 TW_INCLUDE_NTFS_3G := true
 TW_HAS_MTP := true
@@ -162,10 +153,10 @@ TW_INCLUDE_REPACKTOOLS := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true											  
 TW_DEFAULT_LANGUAGE := ru
-TW_NO_SCREEN_BLANK := true
+
 TW_EXCLUDE_APEX := true
-TW_NO_HAPTICS := true
 # StatusBar
 TW_STATUS_ICONS_ALIGN := center
 TW_CUSTOM_CPU_POS := "300"
@@ -177,7 +168,7 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
-
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+TW_DEVICE_VERSION := Camon18P by SK
 # Decryption
 TW_INCLUDE_CRYPTO := false
