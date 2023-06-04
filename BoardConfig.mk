@@ -151,29 +151,44 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
 
-## TWRP-Specific configuration
+# TWRP Configuration
 TW_THEME := portrait_hdpi
-TW_INCLUDE_RESETPROP := true
-
-TW_EXTRA_LANGUAGES := false
-TW_INCLUDE_NTFS_3G := true
-TW_HAS_MTP := true
+TW_EXTRA_LANGUAGES := true
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
+TW_DEVICE_VERSION := SK
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+TW_INCLUDE_FASTBOOTD := true
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_EXCLUDE_TWRPAPP := true
 TW_DEFAULT_LANGUAGE := ru
+# StatusBar
+TW_STATUS_ICONS_ALIGN := center
+TW_CUSTOM_CPU_POS := "300"
+TW_CUSTOM_CLOCK_POS := "70"
+TW_CUSTOM_BATTERY_POS := "790"
 
-# Device config
+# Device
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 1200					  
-TW_Y_OFFSET := 50
-TW_H_OFFSET := -50							   
-
+TW_DEFAULT_BRIGHTNESS := 1200
+TW_FRAMERATE := 60
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+TW_HAS_NO_RECOVERY_PARTITION := true
+TW_EXCLUDE_APEX := true							   
+
+
 
 # Decryption
 TW_INCLUDE_CRYPTO := false
-TW_DEVICE_VERSION := Tecno Camon18P by SK
+
