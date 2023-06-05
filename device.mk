@@ -20,9 +20,6 @@ LOCAL_PATH := device/Tecno/Camon18P
 # A/B
 AB_OTA_PARTITIONS += \
     boot \
-    dtbo \
-    lk \
-    preloader \
     product \
     system \
     system_ext \
