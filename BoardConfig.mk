@@ -157,6 +157,12 @@ TARGET_USES_MKE2FS := true
 TW_DEFAULT_LANGUAGE := ru
 TW_NO_SCREEN_BLANK := true
 
+# StatusBar
+TW_STATUS_ICONS_ALIGN := center
+TW_CUSTOM_CPU_POS := "300"
+TW_CUSTOM_CLOCK_POS := "70"
+TW_CUSTOM_BATTERY_POS := "790"
+
 # Device config
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
