@@ -10,11 +10,6 @@
 /vendor_image	    emmc  	/dev/block/mapper/vendor_a             flags=backup=1;flashimg=1
 /product_image	    emmc	   /dev/block/mapper/product_a             flags=backup=1;flashimg=1;display="Product Image"
 
-#
-
-# Core Partitions
-/metadata             ext4    /dev/block/by-name/md_udc         flags=backup=1;display="metadata"
-
 # Common partition
 /data            ext4    dev/block/by-name/userdata            flags=backup=1;encryptable=/dev/block/by-name/metadata
 /boot_a            emmc    /dev/block/by-name/boot_a               flags=backup=1;display="Boot";flashimg=1
