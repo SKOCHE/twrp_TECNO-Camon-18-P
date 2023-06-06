@@ -1,17 +1,11 @@
 #from device
 ro.board.platform=mt6781
-ro.odm.tee=2
-ro.hardware.egl=meow
 ro.vendor.mediatek.platform=MT6781
 ro.boot.hardware=mt6781
 ro.hardware=mt6785
 ro.vendor.mtk_f2fs_enable=0
 ro.vendor.mtk_emmc_support=1
 ro.vendor.mtk_ufs_support=1
-ro.hardware.kmsetkey=beanpod
-ro.hardware.gatekeeper=beanpod
-ro.vendor.mtk_microtrust_tee_support=1
-ro.crypto.volume.filenames_mode=aes-256-cts
 ro.sf.lcd_density=480
 #
 #others functions
