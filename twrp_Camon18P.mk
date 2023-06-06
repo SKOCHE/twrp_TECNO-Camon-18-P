@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Device Target Name
+PRODUCT_RELEASE_NAME := Camon18P
+
 # Define hardware platform
 PRODUCT_PLATFORM := mt6781
 

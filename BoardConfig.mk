@@ -161,3 +161,6 @@ TARGET_USES_MKE2FS := true
 
 # resetprop and magiskboot
 TW_INCLUDE_REPACKTOOLS := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
