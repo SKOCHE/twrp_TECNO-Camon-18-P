@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2021 TeamWin Recovery Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2023 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +15,7 @@
 # limitations under the License.
 #
 
+# Device path
 DEVICE_PATH := device/Tecno/Camon18P
 
 # For building with minimal manifest
@@ -48,6 +50,18 @@ MTK_HARDWARE := true
 # Assert
 TARGET_OTA_ASSERT_DEVICE := Camon18P
 
+# A/B
+AB_OTA_UPDATER := true
+TW_INCLUDE_REPACKTOOLS := true
+
+AB_OTA_PARTITIONS += \
+    system \
+    vendor \
+    product \
+    system_ext \
+    boot \
+    vbmeta_vendor \
+    vbmeta_system
 # Kernel
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
@@ -80,7 +94,7 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += postinstall
-
+BOARD_ROOT_EXTRA_FOLDERS += tranfs
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
@@ -92,8 +106,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_SYSTEM_EXT = system_ext
 
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
-BOARD_SUPER_PARTITION_GROUPS := tecno_dynamic_partitions
-							 
+BOARD_SUPER_PARTITION_GROUPS := tecno_dynamic_partitions							 
 BOARD_TECNO_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
 BOARD_TECNO_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
@@ -113,26 +126,22 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Recovery
-BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.fstab
 BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TW_NO_SCREEN_BLANK := true
-
+TW_HAS_NO_RECOVERY_PARTITION := true
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
 TW_INCLUDE_CRYPTO := false
 
 TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
+TARGET_USES_LOGD := true							   
 TW_EXTRA_LANGUAGES := false
 TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
-TW_DEVICE_VERSION := Tecno Camon18P by SK
-TW_DEFAULT_DEVICE_NAME := Camon18P
+TW_DEVICE_VERSION := Tecno Camon18P by SK						  
 TW_DEFAULT_LANGUAGE := ru
 TW_INPUT_BLACKLIST := "hbtp_vm"
 
