@@ -134,6 +134,9 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 TW_INCLUDE_CRYPTO := false
+TARGET_USES_MKE2FS := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TW_INCLUDE_RESETPROP := true
 
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true							   
