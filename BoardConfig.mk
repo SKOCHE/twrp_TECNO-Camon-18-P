@@ -98,7 +98,6 @@ BOARD_ROOT_EXTRA_FOLDERS += tranfs
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 
 # Workaround for copying error vendor files to recovery ramdisk
 TARGET_COPY_OUT_PRODUCT := product
