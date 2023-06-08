@@ -1,40 +1,49 @@
-# mount point    fstype    device                         flags
-/system_image           emmc    /dev/block/mapper/system       flags=display="System image";flashimg=1;backup=1
-/vendor_image           emmc    /dev/block/mapper/vendor       flags=display="Vendor image";flashimg=1;backup=1
-/product_image          emmc    /dev/block/mapper/product      flags=display="Product image";flashimg=1;backup=1
+#fstab file by lopestom for Ulefone Power Armor 13_TF2_V02 - S7S68B7.GQU.Ulefone.HB.HJ.AZVKPVFMXPE.20210720.V3.02
+#
+# mount point    fstype  device                             device2                flags
+# Android 11 = /system and /vendor in "super" partition.
+/system		    ext4    /dev/block/mapper/system_a             flags=backup=1;wipeingui
+/vendor             ext4    /dev/block/mapper/vendor_a             flags=backup=1;wipeingui
+/product            ext4    /dev/block/mapper/product_a            flags=backup=1;wipeingui
 
-# Partitions
-/recovery        emmc      /dev/block/by-name/recovery    flags=backup;flashimg
-/boot            emmc      /dev/block/by-name/boot        flags=backup;flashimg
-/cache           emmc      /dev/block/by-name/cache       flags=backup
-/dtbo            emmc      /dev/block/by-name/dtbo        flags=backup
-/vbmeta          emmc      /dev/block/by-name/vbmeta      flags=backup;flashimg
+# Images
+/system_image	    emmc  	/dev/block/mapper/system_a            flags=backup=1;flashimg=1
+/vendor_image	    emmc  	/dev/block/mapper/vendor_a            flags=backup=1;flashimg=1
+/product_image	    emmc	/dev/block/mapper/product_a           flags=backup=1;flashimg=1;display="Product Image"
+
+#
+
+# Common partition
+/boot            emmc    /dev/block/by-name/boot               flags=backup=1;display="Boot";flashimg=1
+/dtbo_a            emmc    /dev/block/by-name/dtbo_a               flags=backup=1;display="Dtbo";flashimg=1
 /persist         emmc      /dev/block/by-name/persist     flags=backup=1;display="Persist";mounttodecrypt
-/tee1            emmc      /dev/block/by-name/tee1        flags=backup
-/tee2            emmc      /dev/block/by-name/tee2        flags=backup
-/persistent      emmc      /dev/block/by-name/frp         flags=backup
-/bootloader      emmc      /dev/block/by-name/lk          flags=backup
-/bootloader2     emmc      /dev/block/by-name/lk2         flags=backup
-/logo            emmc      /dev/block/by-name/logo        flags=backup
-/expdb           emmc      /dev/block/by-name/expdb       flags=backup
-/seccfg          emmc      /dev/block/by-name/seccfg      flags=backup
+/vbmeta_a		    emmc	/dev/block/by-name/vbmeta_a           flags=display="vbmeta";backup=1;flashimg=1
 
-# IMEI and modem related
-# below four partitions are ext4, but we are using only for backup so emmc
-/protect_f       emmc      /dev/block/by-name/protect1    flags=backup
-/protect_s       emmc      /dev/block/by-name/protect2    flags=backup
-/nvdata          emmc      /dev/block/by-name/nvdata      flags=backup
-/nvcfg           emmc      /dev/block/by-name/nvcfg       flags=backup
-/nvram           emmc      /dev/block/by-name/nvram       flags=backup=1;flashimg
-/proinfo         emmc      /dev/block/by-name/proinfo     flags=backup
+# MediaTek partitions
+/lk_a     emmc    /dev/block/by-name/lk_a                flags=backup=1;display="lk";flashimg=1
+/logo_a		    emmc	/dev/block/by-name/logo_a             flags=display="logo";backup=1;flashimg=1
+/misc            emmc    /dev/block/by-name/misc
+/expdb		    emmc	/dev/block/by-name/expdb             flags=display="expdb";backup=1
+/seccfg		    emmc	/dev/block/by-name/seccfg           flags=display="SecCfg";backup=1
+/proinfo	    emmc	/dev/block/by-name/proinfo          flags=display="Proinfo";backup=1
+
+# Non-Volatile (RAM | DATA | CFG)
+/nvcfg		    emmc	/dev/block/by-name/nvcfg            flags=display="NvCfg";backup=1
+/nvdata		    emmc	/dev/block/by-name/nvdata           flags=display="NvData";backup=1
+/nvram		    emmc	/dev/block/by-name/nvram            flags=display="NvRam";backup=1;flashimg=1
+
+# Factory Reset Protection (FRP)
+/frp	    emmc	/dev/block/by-name/frp              flags=display="frp";backup=1
+
+
+# Modem
+/md1img_a		    emmc	/dev/block/by-name/md1img_a           flags=display="Modem";backup=1;flashimg=1
+
+# System Control Processor (SCP)
+/scp_a		    emmc	/dev/block/by-name/scp_a             flags=display="scp";backup=1        
+
 
 # External-Devices (SDCARD | OTG)
-/external_sd            auto    /dev/block/mmcblk0p1    /dev/block/mmcblk0              flags=display="Micro_SDcard";storage;wipeingui;removable;backup=0
-/usbotg        auto     /dev/block/sdd1  /dev/block/sdd                     flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
-
-
-
-
-
-
+/external_sd   auto    /dev/block/mmcblk0p1  /dev/block/mmcblk0   flags=display="MicroSD";fsflags=utf8;storage;wipeingui;removable
+/usb_otg       auto       /dev/block/sdd1      /dev/block/sdd     flags=display="Usb_Otg";fsflags=utf8;storage;wipeingui;removable
 
