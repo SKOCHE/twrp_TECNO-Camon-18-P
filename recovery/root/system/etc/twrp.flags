@@ -1,10 +1,6 @@
 #fstab file by lopestom for Ulefone Power Armor 13_TF2_V02 - S7S68B7.GQU.Ulefone.HB.HJ.AZVKPVFMXPE.20210720.V3.02
 #
 # mount point    fstype  device                             device2                flags
-# Android 11 = /system and /vendor in "super" partition.
-/system		    ext4    /dev/block/mapper/system_a             flags=backup=1;wipeingui
-/vendor             ext4    /dev/block/mapper/vendor_a             flags=backup=1;wipeingui
-/product            ext4    /dev/block/mapper/product_a            flags=backup=1;wipeingui
 
 # Images
 /system_image	    emmc  	/dev/block/mapper/system_a            flags=backup=1;flashimg=1
@@ -47,6 +43,7 @@
 # Other partitions
 /spmfw_a		emmc	/dev/block/by-name/spmfw_a          flags=display="Spm";backup=1
 /sspm_a		    emmc	/dev/block/by-name/sspm_a           flags=display="sspm";backup=1
+/tranfs         ext4    /dev/block/by-name/tranfs           flags=display="tranfs";backup=1
 
 # Modem
 /md1img_a		emmc	/dev/block/by-name/md1img_a          flags=display="Modem";backup=1;flashimg=1
