@@ -1,4 +1,7 @@
 on init
+    mkdir /mnt/vendor/persist
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 1
     # pstore/ramoops previous console log
