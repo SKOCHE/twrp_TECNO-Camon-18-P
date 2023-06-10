@@ -1,4 +1,3 @@
-#fstab file by lopestom for Ulefone Power Armor 13_TF2_V02 - S7S68B7.GQU.Ulefone.HB.HJ.AZVKPVFMXPE.20210720.V3.02
 #
 # mount point    fstype  device                             device2                flags
 
@@ -16,7 +15,6 @@
 /boot            emmc    /dev/block/by-name/boot            flags=backup=1;display="Boot";flashimg=1
 /dtbo_a          emmc    /dev/block/by-name/dtbo_a          flags=backup=1;display="Dtbo";flashimg=1
 /persist         emmc    /dev/block/by-name/persist         flags=backup=1;display="Persist";mounttodecrypt
-/vbmeta_a		 emmc	 /dev/block/by-name/vbmeta_a        flags=display="vbmeta";backup=1;flashimg=1
 
 # MediaTek partitions
 /lk_a           emmc    /dev/block/by-name/lk_a             flags=backup=1;display="lk";flashimg=1
