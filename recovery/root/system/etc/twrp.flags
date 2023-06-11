@@ -41,7 +41,7 @@
 # Other partitions
 /spmfw_a		emmc	/dev/block/by-name/spmfw_a          flags=display="Spm";backup=1
 /sspm_a		    emmc	/dev/block/by-name/sspm_a           flags=display="sspm";backup=1
-/tranfs         ext4    /dev/block/by-name/tranfs           flags=display="tranfs";backup=1
+/tranfs         emmc    /dev/block/by-name/tranfs           flags=display="tranfs";backup=1
 
 # Modem
 /md1img_a		emmc	/dev/block/by-name/md1img_a          flags=display="Modem";backup=1;flashimg=1
