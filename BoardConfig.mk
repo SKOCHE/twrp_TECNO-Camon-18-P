@@ -135,6 +135,8 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 TW_INCLUDE_CRYPTO := false
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_INTERNAL_STORAGE_PATH := "/data/media/0" 
 
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true							   
