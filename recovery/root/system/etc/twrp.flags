@@ -1,10 +1,15 @@
 #
 # mount point    fstype  device                             device2                flags
 
-# Images
-/system_image	    emmc  	/dev/block/mapper/system_a            flags=backup=1;flashimg=1
-/vendor_image	    emmc  	/dev/block/mapper/vendor_a            flags=backup=1;flashimg=1
-/product_image	    emmc	/dev/block/mapper/product_a           flags=backup=1;flashimg=1;display="Product Image"
+#Super partitions mount
+/system_root      ext4   /dev/block/mapper/system                flags=backup=0;removable;slotselect
+/system_ext       ext4   /dev/block/mapper/system_ext            flags=backup=0;removable;slotselect
+/vendor           ext4   /dev/block/mapper/vendor                flags=backup=0;removable;slotselect
+/product          ext4   /dev/block/mapper/product               flags=backup=0;removable;slotselect
+/system_img       emmc   /dev/block/mapper/system                flags=display="System image";backup=1;flashimg;slotselect
+/system_ext_img   emmc   /dev/block/mapper/system_ext            flags=display="System_ext image";backup=1;flashimg;slotselect
+/vendor_img       emmc   /dev/block/mapper/vendor                flags=display="Vendor image";backup=1;flashimg;slotselect
+/product_img      emmc   /dev/block/mapper/product               flags=display="Product image";backup=1;flashimg;slotselect 
 
 /vbmeta_a		    emmc	/dev/block/by-name/vbmeta_a           flags=display="vbmeta";backup=1;flashimg=1
 /vbmeta_system_a    emmc    /dev/block/by-name/vbmeta_system_a    flags=backup=1;display="vbmeta_system";flashimg=1
@@ -14,7 +19,8 @@
 # Common partition
 /boot            emmc    /dev/block/by-name/boot            flags=backup=1;display="Boot";flashimg=1
 /dtbo_a          emmc    /dev/block/by-name/dtbo_a          flags=backup=1;display="Dtbo";flashimg=1
-/persist         emmc    /dev/block/by-name/persist         flags=backup=1;display="Persist";mounttodecrypt
+/persist         ext4    /dev/block/by-name/persist            flags=backup=1;display="Persist"
+/persist_image   emmc    /dev/block/by-name/persist            flags=backup=1;display="Persist Image";flashimg=1
 
 # MediaTek partitions
 /lk_a           emmc    /dev/block/by-name/lk_a             flags=backup=1;display="lk";flashimg=1
