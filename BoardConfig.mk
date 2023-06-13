@@ -129,6 +129,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Recovery
+BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_USES_RECOVERY_AS_BOOT := true
@@ -150,8 +151,6 @@ TW_USE_TOOLBOX := true
 TW_DEVICE_VERSION := Tecno Camon18P by SK						  
 TW_DEFAULT_LANGUAGE := ru
 TW_INPUT_BLACKLIST := "hbtp_vm"
-BOARD_HAS_NO_REAL_SDCARD := true
-TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 
 # Display
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
