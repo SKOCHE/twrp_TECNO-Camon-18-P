@@ -48,11 +48,17 @@ PRODUCT_TARGET_VNDK_VERSION := 31
 # API
 PRODUCT_SHIPPING_API_LEVEL := 31
 
-
+# Health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+    libhealthd.$(PRODUCT_PLATFORM)
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl.recovery
+    android.hardware.boot@1.2-mtkimpl.recovery \
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-service
 
 # fastbootd
 PRODUCT_PACKAGES += \
