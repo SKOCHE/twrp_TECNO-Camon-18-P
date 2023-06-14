@@ -162,6 +162,7 @@ TW_USE_TOOLBOX := true
 TW_DEVICE_VERSION := Tecno Camon18P by SK						  
 TW_DEFAULT_LANGUAGE := ru
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # Display
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
