@@ -15,7 +15,7 @@
 #
 # Device Target Name
 PRODUCT_RELEASE_NAME := Camon18P
-
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Define hardware platform
 PRODUCT_PLATFORM := mt6781
 
