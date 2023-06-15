@@ -178,5 +178,5 @@ TW_CUSTOM_BATTERY_POS := "790"
 TW_INCLUDE_REPACKTOOLS := true
 TW_EXCLUDE_APEX := true								  
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 TW_BACKUP_EXCLUSIONS := /data/fonts/files
