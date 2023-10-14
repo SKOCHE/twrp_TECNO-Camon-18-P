@@ -1,12 +1,12 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2023 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/Tecno/Camon18P
+LOCAL_PATH := device/tecno/CH7n
 
 # A/B
 AB_OTA_PARTITIONS += \
@@ -31,7 +31,7 @@ AB_OTA_PARTITIONS += \
     
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
@@ -56,31 +56,34 @@ PRODUCT_PACKAGES += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery
     
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
-
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+PRODUCT_PACKAGES += \
     bootctrl.mt6781 \
     libgptutils \
     libz \
     libcutils
 
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl \
+    update_engine_client
+
+PRODUCT_PACKAGES += \
+    bootctrl.mt6781 \
+    bootctrl.mt6781.recovery
+
+
 # MTK PlPath Utils
 PRODUCT_PACKAGES += \
     mtk_plpath_utils.recovery
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -89,5 +92,3 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
