@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2021 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,28 +15,39 @@
 #
 # Device Target Name
 PRODUCT_RELEASE_NAME := Camon18P
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Inherit from the Device Tree itself.
-$(call inherit-product, device/Tecno/Camon18P/device.mk)
+# Define hardware platform
+PRODUCT_PLATFORM := mt6781
 
-# Inherit from TWRP-common stuffs, if building TWRP.
-$(call inherit-product, vendor/twrp/config/common.mk)
-
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+# Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
-# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Device Identifier
+# Inherit from TECNO Camon18P device
+$(call inherit-product, device/Tecno/Camon18P/device.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
+
+## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := Camon18P
 PRODUCT_NAME := twrp_Camon18P
 PRODUCT_BRAND := Tecno
 PRODUCT_MODEL := Camon18P
 PRODUCT_MANUFACTURER := Tecno
+  
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sys_tssi_64_tecno-user 12 SP1A.210812.016 198666 release-keys"
+    TARGET_DEVICE=Camon18P \
+    PRODUCT_NAME=Camon18P \
+    PRIVATE_BUILD_DESC="vnd_ch7n_h812-user 12 SP1A.210812.016 197442 release-keys"
 
-BUILD_FINGERPRINT := TECNO/CH7n-OP/TECNO-CH7n:12/SP1A.210812.016/221222V597:user/release-keys
+BUILD_FINGERPRINT := TECNO/CH7n-OP/TECNO-CH7n:12/SP1A.210812.016/221221V364:user/release-keys
+
+# HACK: Set vendor patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2099-12-31

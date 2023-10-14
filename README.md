@@ -6,5 +6,6 @@
 # Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
 #
 # SPDX-License-Identifier: Apache-2.0
-#
+$ cd ..
+$ . device/lenovo/P780_ROW/patches/apply-patch.sh
 ```
