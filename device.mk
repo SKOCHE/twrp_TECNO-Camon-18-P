@@ -92,6 +92,13 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
+# Additional binaries & libraries needed for recovery
+TARGET_RECOVERY_DEVICE_MODULES += \
+android.hardware.confirmationui@1.0
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+$(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.confirmationui@1.0.so
+
 #OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(LOCAL_PATH)/security/tecno
