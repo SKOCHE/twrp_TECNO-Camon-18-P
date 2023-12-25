@@ -1,12 +1,12 @@
 #
 # Copyright (C) 2022 The Android Open Source Project
-# Copyright (C) 2023 The TWRP Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,75 +15,59 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/Tecno/Camon18P
+LOCAL_PATH := device/tecno/CH7n
 
-# A/B
-AB_OTA_PARTITIONS += \
-    boot \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vbmeta_vendor \
-    vendor \
-    vendor_boot
-    
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# V A/B
-ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# Dynam
+# Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 31
 
 # API
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 
-# Health Hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM)
+PRODUCT_PLATFORM := mt6781
+
+# A/B
+AB_OTA_UPDATER := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    lk \
+    preloader \
+    product \
+    system \
+    system_ext \
+    odm \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    vendor \
+    vendor_boot
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+# VIRTUAL A/B
+ENABLE_VIRTUAL_AB := true
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2-mtkimpl.recovery \
     android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-mtkimpl.recovery
-    
-# Fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \
-    fastbootd
-
-PRODUCT_PACKAGES += \
-    bootctrl.mt6781 \
-    libgptutils \
-    libz \
-    libcutils
+    android.hardware.boot@1.2-impl-recovery \
+    android.hardware.boot@1.2-impl \
+    android.hardware.boot@1.2-service
 
 PRODUCT_PACKAGES_DEBUG += \
-    bootctrl \
     update_engine_client
-
-PRODUCT_PACKAGES += \
-    bootctrl.mt6781 \
-    bootctrl.mt6781.recovery
-
-
-# MTK PlPath Utils
-PRODUCT_PACKAGES += \
-    mtk_plpath_utils.recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -92,13 +76,25 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-android.hardware.confirmationui@1.0
+# MTK PlPath Utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils.recovery
 
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-$(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.confirmationui@1.0.so
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
 
-#OEM otacerts
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/security/tecno
+# fastbootd stuff
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery \
+    fastbootd
+
+# health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service \
+
+
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
+
