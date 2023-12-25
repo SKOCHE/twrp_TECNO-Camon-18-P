@@ -22,7 +22,7 @@ on:
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        default: 'device/Tecno/Camon18P'
+        default: 'device/Tecno/CH7n'
       COMMON_TREE_URL:
         description: 'COMMON_TREE_URL (if no common tree, leave blank)'
         required: false
@@ -36,7 +36,7 @@ on:
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME'
         required: true
-        default: 'twrp_Camon18P'
+        default: 'twrp_CH7n'
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
