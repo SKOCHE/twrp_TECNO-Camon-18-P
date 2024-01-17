@@ -20,9 +20,6 @@ LOCAL_PATH := device/Tecno/Camon18P
 # A/B
 AB_OTA_PARTITIONS += \
     boot \
-    dtbo \
-    lk \
-    preloader \
     product \
     system \
     system_ext \
@@ -34,7 +31,7 @@ AB_OTA_PARTITIONS += \
     
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
@@ -51,17 +48,6 @@ PRODUCT_TARGET_VNDK_VERSION := 30
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# HACK: Set vendor patch level
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.vendor.build.security_patch=2099-12-31 \
-#    ro.bootimage.build.date.utc=0 \
-#    ro.build.date.utc=0
-
-# Bypass anti-rollback ROMs protection
-# Set build date to Jan 1 2009 00:00:00
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.build.date.utc=1230768000
-
 # Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
@@ -70,25 +56,34 @@ PRODUCT_PACKAGES += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.1-service \
+    android.hardware.boot@1.1-mtkimpl \
+    android.hardware.boot@1.1-mtkimpl.recovery
     
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
-
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
+PRODUCT_PACKAGES += \
+    bootctrl.mt6781 \
+    libgptutils \
+    libz \
+    libcutils
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl \
+    update_engine_client
+
+PRODUCT_PACKAGES += \
+    bootctrl.mt6781 \
+    bootctrl.mt6781.recovery
+
+
 # MTK PlPath Utils
 PRODUCT_PACKAGES += \
     mtk_plpath_utils.recovery
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -97,5 +92,3 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
