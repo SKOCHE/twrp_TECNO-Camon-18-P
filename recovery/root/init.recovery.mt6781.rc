@@ -6,7 +6,7 @@ on init
 on fs
     install_keyring
 
-    write /sys/class/power_supply/usb/otg_switch 1
+    write /sys/class/udc/musb-hdrc/device/cmode 2
     write /sys/class/oplus_chg/usb/otg_switch 1
 
 on post-fs
@@ -16,6 +16,8 @@ on post-fs
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
+    symlink /dev/block/mmcblk0boot0 /dev/block/by-name/preloader_a
+    symlink /dev/block/mmcblk0boot1 /dev/block/by-name/preloader_b
 
     # Support A/B feature for combo emmc and ufs OTA update
     symlink /dev/block/platform/bootdevice/by-name/preloader_a /dev/block/platform/bootdevice/by-name/preloader_emmc_a
@@ -24,10 +26,6 @@ on post-fs
     symlink /dev/block/platform/bootdevice/by-name/preloader_b /dev/block/platform/bootdevice/by-name/preloader_ufs_b
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
-    symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
-    symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
-    symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
-    symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
     start mtk.plpath.utils.link
 
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
@@ -45,7 +43,7 @@ service keystore_auth /system/bin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
-service keystore2 /system/bin/keystore2 /tmp/misc/keystore
+service keystore /system/bin/keystore /tmp/misc/keystore
     user root
     group root drmrpc readproc log
     disabled
@@ -57,33 +55,21 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
 	-r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/05120000000000000000000000000001.drbin \
-	-r /vendor/app/mcRegistry/05160000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/03100000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/031c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/032c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/033c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/034c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/035c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/036c0000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/037c0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin \
-	-r /vendor/app/mcRegistry/070c0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/090b0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/0f5eed3c3b5a47afacca69a84bf0efad.drbin \
 	-r /vendor/app/mcRegistry/07060000000000000000000000007169.drbin \
 	-r /vendor/app/mcRegistry/4be4f7dc1f2c11e5b5f7727283247c7f.drbin \
 	-r /vendor/app/mcRegistry/08070000000000000000000000008270.drbin \
-	-r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/07407000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/9073f03a9618383bb1856eb3f990babd.drbin \
-	-r /vendor/app/mcRegistry/07090000000000000000000000000000.drbin \
-	-r /vendor/app/mcRegistry/6b3f5fa0f8cf55a7be2582587d62d63a.drbin \
-	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin
-
+    -r /vendor/app/mcRegistry/6b3f5fa0f8cf55a7be2582587d62d63a.drbin \
+    -r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin
     user root
     group root
     disabled
@@ -103,7 +89,7 @@ service tee-1-1 /vendor/bin/hw/vendor.trustonic.tee@1.1-service
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.keymaster-4-1-trustonic /vendor/bin/hw/android.hardware.keymaster@4.1-service.trustonic
+service vendor.keymaster-4-0-trustonic /vendor/bin/hw/android.hardware.keymaster@4.0-service.trustonic
     class early_hal
     user root
     group root drmrpc
@@ -122,14 +108,14 @@ on property:hwservicemanager.ready=true
     start paytrigger_hal_service
     start mobicore
     start tee-1-1
-    start vendor.keymaster-4-1-trustonic
+    start vendor.keymaster-4-0-trustonic
     start vendor.gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop paytrigger_hal_service
     stop mobicore
     stop tee-1-1
-    stop vendor.keymaster-4-1-trustonic
+    stop vendor.keymaster-4-0-trustonic
     stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
@@ -138,7 +124,7 @@ on property:ro.crypto.state=unencrypted
     stop paytrigger_hal_service
     stop mobicore
     stop tee-1-1
-    stop vendor.keymaster-4-1-trustonic
+    stop vendor.keymaster-4-0-trustonic
     stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
@@ -147,7 +133,7 @@ on property:twrp.decrypt.done=true
     stop paytrigger_hal_service
     stop mobicore
     stop tee-1-1
-    stop vendor.keymaster-4-1-trustonic
+    stop vendor.keymaster-4-0-trustonic
     stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
