@@ -16,7 +16,7 @@
 #
 
 # Release name
-PRODUCT_RELEASE_NAME := TECNO CH7n
+PRODUCT_RELEASE_NAME := CH7n
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -28,8 +28,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 # Virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# Inherit from TECNO-CH7n device
-$(call inherit-product, device/tecno/CH7n/device.mk)
+# Inherit from CH7n device
+$(call inherit-product, device/Tecno/CH7n/device.mk)
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)

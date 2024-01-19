@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/tecno/CH7n
+LOCAL_PATH := device/Tecno/CH7n
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
