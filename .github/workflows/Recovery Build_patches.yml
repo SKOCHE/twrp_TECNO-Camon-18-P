@@ -83,13 +83,6 @@ jobs:
         distribution: 'zulu'
         java-version: '8'
 
-    - name: Install Python 2
-      if: github.event.inputs.MANIFEST_BRANCH != 'twrp-11' && github.event.inputs.MANIFEST_BRANCH != 'twrp-12.1'
-      run: |
-        sudo apt -y install python2
-        cd /usr/bin
-        sudo ln -sf python2 python
-
     - name: Switch to Python3
       if: github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1'
       run: |
