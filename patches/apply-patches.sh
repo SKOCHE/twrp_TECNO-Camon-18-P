@@ -1,7 +1,4 @@
 #!/bin/bash
 cd ./bootable/recovery
-for f in ../../device/xiaomi/surya/patches/*.patch
-do
-  patch -p1 < $f
-done
+patch -p1 < ../../device/Tecno/Camon18P/patches/0001-revert-save-settings-file-in-persist.patch
 cd ../..
