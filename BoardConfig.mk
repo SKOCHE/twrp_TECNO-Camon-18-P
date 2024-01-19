@@ -100,13 +100,16 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 3
 BOARD_SUPPRESS_SECURE_ERASE := true
 #BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
-# Additional binaries & libraries needed for recovery
+# Recovery modules
 TARGET_RECOVERY_DEVICE_MODULES += \
     libgatekeeper \
-    libgatekeeper_aidl \
     libkeymaster41 \
     libpuresoftkeymasterdevice
 
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 # Encryption
 PLATFORM_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 20.1.0
@@ -185,12 +188,5 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 TW_BACKUP_EXCLUSIONS := /data/fonts/files
 
-# Decryption
-TW_INCLUDE_CRYPTO := true
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libgatekeeper.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libgatekeeper_aidl.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
-TW_INCLUDE_FBE_METADATA_DECRYPT := true							  
+						  
 
