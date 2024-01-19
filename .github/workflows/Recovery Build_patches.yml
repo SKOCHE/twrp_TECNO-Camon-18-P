@@ -83,18 +83,12 @@ jobs:
         distribution: 'zulu'
         java-version: '8'
 
-    - name: Switch to Python3
-      if: github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1'
-      run: |
-        sudo rm -rf /usr/bin/python
-        sudo ln -s /usr/bin/python3 /usr/bin/python
-      continue-on-error: true
-
-    - name: Check Manifest Branch
-      uses: haya14busa/action-cond@v1
-      id: manifest
+    - name: Setup SSH Keys
+      if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') }}
+      uses: webfactory/ssh-agent@v0.5.4
       with:
-        cond: ${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}
+          ssh-private-key: |
+              ${{ secrets.SSH_PRIVATE_KEY }}
         if_true: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git
         if_false: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
 
