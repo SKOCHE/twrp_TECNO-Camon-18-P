@@ -100,16 +100,6 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 3
 BOARD_SUPPRESS_SECURE_ERASE := true
 #BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
-# Recovery modules
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libgatekeeper \
-    libkeymaster41 \
-    libpuresoftkeymasterdevice
-
-RECOVERY_LIBRARY_SOURCE_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 # Encryption
 PLATFORM_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 20.1.0
